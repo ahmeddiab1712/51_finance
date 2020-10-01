@@ -1,0 +1,153 @@
+{% extends 'main.html' %}
+{% block body %}
+
+<body>
+    <div class="text-center" style="font-weight: bolder;color: black;font-size: 25px"><h4>Add Money In</h4></div>
+    <br>
+    <br>
+    <form class="user" method="POST" action=''>
+
+  </form>
+  <form action="" method="POST">
+        <div class="form-group row">
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <span style="color: deeppink;font-size: 120%">Section</span>
+            <br>
+            <select id="section" name="section" style="width: 30%;height: 50%;font-weight: bold;">
+            </select>
+            <br>
+          </div>
+          <div class="col-sm-6">
+            <span style="color: deeppink;font-size: 120%">Instructor</span>
+            <input type="text" class="form-control form-control-user" id="exampleLastName" style="color:black;font-weight: bold"   name="Instructor">
+            <br>
+          </div>
+
+          <div class="col-sm-6 mb-3 mb-sm-0">
+              <span style="color: deeppink;font-size: 120%">Section Description</span>
+            <textarea type="text" class="form-control form-control-user" id="exampleFirstName" style="color:black;font-weight: bold" name="section_description"> </textarea>
+            <br>
+          </div>
+
+        
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <span style="color: deeppink;font-size: 120%">Payment Method</span>
+            <br>
+            <select style="width: 40%;height: 50%;font-weight: bold;" id="payment_method" name="payment_method">
+                <option selected>Cash</option>
+                <option>Visa</option>
+                <option>Dollar</option>
+                <option>Other</option>       
+            </select>
+          
+        </div>
+        
+        <div class="col-sm-6">
+            <br>
+              <span style="color: deeppink;font-size: 120%">Payment Description</span>
+              <textarea type="text" class="form-control form-control-user" id="exampleFirstName" style="color:black;font-weight: bold" name="section_description"> </textarea>
+          </div> 
+          <div class="col-sm-6">
+            <br>
+              <span style="color: deeppink;font-size: 120%">Date</span>
+              <br>
+              <input  id="datepicker" name="datepicker" data-date-format="yyyy-mm-dd" placeholder="YYYY-MM-DD" style="width: 40%;height: 50%;font-weight: bold;">
+          </div> 
+        </div>
+
+        <hr>
+        <hr>
+        <div class="col-sm-6">
+            <br>
+        <span style="color: deeppink;font-size: 120%">Amount</span>
+        <input type="text" class="form-control form-control-user" name="amount" style="color:black;font-weight: bold;width: 20%" value="0">
+    </div> 
+        <div class="col-sm-6">
+            <br>
+            <br>
+            Checkbox: <input style="height:40%;" type="checkbox" id="myCheck" onclick="myFunction()">
+            <br>
+            <br>
+        <span style="color: deeppink;font-size: 120%">Percent Or Value</span>
+        <br>
+        <select id="percent_value"  name="percent_value" style="width: 30%;height: 50%;font-weight: bold;">
+        <option selected>Percent</option>
+        <option>Value</option>    
+        </select>
+        <br>
+        <br>
+        <span style="color: deeppink;font-size: 120%">Center Share</span>
+        <input type="text" id="center_share" class="form-control form-control-user" name="center_share" style="color:black;font-weight: bold;width: 20%" value="0">
+   
+</div>
+        
+        <br>
+        <hr>
+        <div class="text-center"><input name="submit" type="submit" class="btn btn-info" value="submit" style="width: 30%"></div>
+
+      </form>
+      <script>
+        let dropdown = $('#section');
+
+        dropdown.empty();
+
+        dropdown.append('<option selected="true" disabled>Choose Section</option>');
+        dropdown.prop('selectedIndex', 1);
+
+        const url = '/section_data';
+
+        // Populate dropdown with list of provinces
+        $.getJSON(url, function (data) {
+          $.each(data, function (key, entry) {
+            dropdown.append($('<option></option>').attr('value', entry.abbreviation).text(entry.section));
+          })
+        });
+      </script>
+      <script src="{{ url_for('static', filename='bootstrap-datepicker.min.js') }}"></script>
+
+      <style type="text/css">
+        .datepicker {
+            font-size: 1em;
+
+        }
+        /* solution 2: the original datepicker use 20px so replace with the following:*/
+        
+        .datepicker td, .datepicker th {
+            width: 2.5em;
+            height: 2.5em;
+        }
+        
+      </style>
+      <script>
+        $('#datepicker').datepicker({
+            weekStart: 1,
+            daysOfWeekHighlighted: "6,0",
+            autoclose: true,
+            todayHighlight: true,
+        });
+        $('#datepicker').datepicker("setDate", new Date());
+    </script>
+      <script>      
+      $('#course').on('change', function(){
+        $('#subject').val($(this).val());
+      })
+
+      $('#course').change();
+</script>
+
+<script>
+    function myFunction() {
+      var checkBox = document.getElementById("myCheck");
+      
+      if (checkBox.checked == true){
+        document.getElementById("percent_value").disabled = true;
+        document.getElementById("center_share").disabled = true;
+      } else {
+        document.getElementById("percent_value").disabled = false;
+        document.getElementById("center_share").disabled = false;
+      }
+    }
+    </script>
+      
+</body> 
+{% endblock %}

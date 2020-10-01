@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Register</title>
+
+  <!-- Custom fonts for this template-->
+  
+  <link href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="{{ url_for('static', filename='css/sb-admin-2.min.css')}}" rel="stylesheet">
+
+</head>
+{% block body %}
+<body class="bg-gradient-primary">
+
+  <div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg-5 d-none d-lg-block bg-register-image"><img src="{{ url_for('static', filename='img/logo.jpg')}}" style="width: 115%; height: 100%;"></div>
+          <div class="col-lg-7">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                <div id="myAlert" class="alert alert-light" style="color: red; font-size: 13px;">{{error}}</div>
+              </div>
+              <form class="user" method="POST" action=''>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Employee's Name" name="name" value="{{request.form.name}}">
+                    <div id="myAlert" class="alert alert-light" style="color: red; font-size: 13px;">{{error1}}</div>
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Username" name="username" value="{{request.form.username}}">
+                    <div id="myAlert" class="alert alert-light" style="color: red; font-size: 13px;">{{error2}}</div>
+                  </div>
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <select id="gender" name="gender" style="width: 70%;height: 50%;">
+                                <option value="Male" selected>Male</option>
+                                <option value="Female">Female</option>
+                    </select>
+                    <div id="myAlert" class="alert alert-light" style="color: red; font-size: 13px;"></div>
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Age" name="age" value="{{request.form.age}}">
+                    <div id="myAlert" class="alert alert-light" style="color: red; font-size: 13px;">{{error3}}</div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" name="password" value="{{request.form.password}}">
+                    <div id="myAlert" class="alert alert-light" style="color: red; font-size: 13px;">{{error5}}</div>
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password" name="confirm" value="{{request.form.confirm}}">
+                  </div>
+                </div>
+                <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                          <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Domain Password" name="domain" value="{{request.form.domain}}">
+                          <div id="myAlert" class="alert alert-light" style="color: red; font-size: 13px;">{{error6}}</div>
+                        </div>
+                </div>
+
+                Employee's Role <select id="role" name="role">
+                    <option value="Staff" selected>Staff</option>
+                    <option value="Admin">Admin</option>
+                </select>
+                <input type="hidden" id="subject" name="subject" value="{{request.form.subject}}">
+                <div id="myAlert" class="alert alert-light" style="color: red; font-size: 13px;"></div>
+                <div class="text-center"><button type="submit" class="btn btn-primary btn-user btn-block" value="register">Register</button></div>
+                <hr>
+                
+              </form>
+              
+              <hr>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Success</h5>
+          
+        </div>
+            <div class="modal-body">
+            <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" name='btn' value='save'>login</button>
+            <button type="button" class="btn btn-secondary">Register Another Account</button>
+            </div>
+        </div>
+        </div>
+        </div>
+    </div>
+        
+</div>
+  
+  <!-- Bootstrap core JavaScript-->
+  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+  <script src=" {{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="{{ url_for('static', filename='js/sb-admin-2.min.js')}}"></script>
+
+</body>
+{% endblock %}
+</html>

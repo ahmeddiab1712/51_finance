@@ -1,0 +1,9 @@
+$(function(){
+    $("#calendar").fullCalendar({
+        header:{
+            left:"month,agendaWeek,agendaDay",
+            center:"title",
+            right:"today,prevYear,prev,next,nextYear"
+        }
+    });
+})
